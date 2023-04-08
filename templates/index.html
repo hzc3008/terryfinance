@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <h2> Account Summary </h2>
+    <table style="margin-left: auto; margin-right: auto;">
+        <thead>
+            <tr>
+                <th>Stockvalue</th>
+                <th>Cash</th>
+                <th>GrandTotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${{ stockvalue | usd }}</td>
+                <td>${{ usercash | usd }}</td>
+                <td>${{ grandtotal | usd  }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2> Stock Summary </h2>
+    <table style="margin-left: auto; margin-right: auto;">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Stockvalue</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for userstock in userstocks %}
+                <tr>
+                    <td>{{ userstock.symbol }}</td>
+                    <td>{{ userstock.sumshares }}</td>
+                    <td>${{ userstock.price | usd  }}</td>
+                    <td>${{ userstock.totalvalue | usd }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
